@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Random;
  
@@ -6,37 +7,49 @@ public class ArraySorting
 
     public static void main(String[] args)
     {
-        Scanner in = new Scanner(System.in);
+    	int arraySize = 0;
+    	Scanner in = new Scanner(System.in);
         System.out.print("¬ведите размер массива: ");
-        int arraySize = in.nextInt();		//переменна€ хран€ща€ размер массива (введЄнный с консоли)
-        int [] array = new int[arraySize];	//переменна€ хран€ща€ массив
-        int [] array2 = new int[arraySize];
-        array = randomize(arraySize);
-        array2 = randomize(arraySize);
-        
-        System.out.print("—генерирован массив случайных чисел: "); 
-        for (int i = 0; i < arraySize; i++) 
-        {
-        	System.out.print(array[i] + " ");
-        }
-        	System.out.println();
-           	array = bublesort(array);
-           	array2 = insertionSort(array);
-        
-           	System.out.print("ћассив отсортирован по возрастанию методом пузырька: ");         
-           	for (int i = 0; i < arraySize; i++) 
-           		{
-           			System.out.print(array[i] + " ");
-           		}
-           	System.out.println();
-           	System.out.print("ћассив отсортирован по возрастанию методом вставки: ");         
-           	for (int i = 0; i < arraySize; i++) 
-           		{
-           			System.out.print(array2[i] + " ");
-           		}
-       	System.out.println();
-        in.close();
-        
+        		
+	        try
+	        	{
+	        	arraySize = in.nextInt();
+	        	} 
+	        catch (InputMismatchException ex)
+	        	{
+	            System.err.println("¬ы ввели не целое число");
+	            return;
+	        	}
+	        
+	        
+   int [] array = new int[arraySize];	
+   int [] array2 = new int[arraySize];
+   array = randomize(arraySize);
+   array2 = randomize(arraySize);
+		        
+   System.out.print("—генерирован массив случайных чисел: "); 
+   for (int i = 0; i < arraySize; i++) 
+		        {
+		        	System.out.print(array[i] + " ");
+		        }
+		        	System.out.println();
+		           	array = bublesort(array);
+		           	array2 = insertionSort(array);
+		        
+		           	System.out.print("ћассив отсортирован по возрастанию методом пузырька: ");         
+		           	for (int i = 0; i < arraySize; i++) 
+		           		{
+		           			System.out.print(array[i] + " ");
+		           		}
+		           	System.out.println();
+		           	System.out.print("ћассив отсортирован по возрастанию методом вставки: ");         
+		           	for (int i = 0; i < arraySize; i++) 
+		           		{
+		           			System.out.print(array2[i] + " ");
+		           		}
+		       	System.out.println();
+		        in.close();
+	    	
     }
     
     private static int[] randomize(int size) 
