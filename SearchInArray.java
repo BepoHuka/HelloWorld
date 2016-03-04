@@ -83,7 +83,7 @@ public class SearchInArray
     	return arrayToSort;    	
     	
     }  
- 
+ /*
     private static int[] searchOne(int[] array) 
     {    	   	
     	 for (int j = 0; j < array.length; j++) 
@@ -95,5 +95,5 @@ public class SearchInArray
          }
          return -1; 
     }  
- 
+*/ 
 }
