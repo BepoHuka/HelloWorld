@@ -2,18 +2,21 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Random;
  
-public class ArraySorting 
+public class SearchInArray 
 {
-
+	  private int n;  
+	  private int i;  
+	  private int[] generatedArray;
+	
     public static void main(String[] args)
     {
-    	int arraySize = 0;
+    	int n = 0;
     	Scanner in = new Scanner(System.in);
         System.out.print("¬ведите размер массива: ");
         		
 	        try
 	        	{
-	        	arraySize = in.nextInt();
+	        	n = in.nextInt();
 	        	} 
 	        catch (InputMismatchException ex)
 	        	{
@@ -22,32 +25,26 @@ public class ArraySorting
 	        	}
 	        
 	        
-   int [] array = new int[arraySize];	
-   int [] array2 = new int[arraySize];
-   array = randomize(arraySize);
-   array2 = randomize(arraySize);
+   int [] array = new int[n];	
+   array = randomize(n);
+ 
 		        
    System.out.print("—генерирован массив случайных чисел: "); 
-   for (int i = 0; i < arraySize; i++) 
+   for (int i = 0; i < n; i++) 
 		        {
 		        	System.out.print(array[i] + " ");
 		        }
 		        	System.out.println();
 		           	array = bublesort(array);
-		           	array2 = insertionSort(array);
+		          
 		        
 		           	System.out.print("ћассив отсортирован по возрастанию методом пузырька: ");         
-		           	for (int i = 0; i < arraySize; i++) 
+		           	for (int i = 0; i < n; i++) 
 		           		{
 		           			System.out.print(array[i] + " ");
 		           		}
 		           	System.out.println();
-		           	System.out.print("ћассив отсортирован по возрастанию методом вставки: ");         
-		           	for (int i = 0; i < arraySize; i++) 
-		           		{
-		           			System.out.print(array2[i] + " ");
-		           		}
-		       	System.out.println();
+		           
 		        in.close();
     	
     }
@@ -86,20 +83,17 @@ public class ArraySorting
     	return arrayToSort;    	
     	
     }  
-    
-    private static int[] insertionSort(int[] insArray)
-    {
-    	for (int i = 0; i < insArray.length; i++)
-    	{
-    		int arrayElement = insArray[i];
-    		int j = i-1;
-    		while(j >= 0 && insArray[j] > arrayElement)
-    		{
-    			insArray[j] = insArray[i];
-    			j=j-1;
-    			insArray[j+1]=arrayElement;
-    		}
-       	}
-    	return insArray;
-    }
+ 
+    private static int[] searchOne(int[] array) 
+    {    	   	
+    	 for (int j = 0; j < array.length; j++) 
+    	 {
+             if (array[j] == i) 
+             { 
+               return j;
+             }
+         }
+         return -1; 
+    }  
+ 
 }
