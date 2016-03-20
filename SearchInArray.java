@@ -1,99 +1,59 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.Random;
- 
-public class SearchInArray 
-{
-	  private int n;  
-	  private int i;  
-	  private int[] generatedArray;
-	
-    public static void main(String[] args)
-    {
-    	int n = 0;
-    	Scanner in = new Scanner(System.in);
-        System.out.print("Введите размер массива: ");
-        		
-	        try
-	        	{
-	        	n = in.nextInt();
-	        	} 
-	        catch (InputMismatchException ex)
-	        	{
-	            System.err.println("Вы ввели не целое число");
-	            return;
-	        	}
-	        
-	        
-   int [] array = new int[n];	
-   array = randomize(n);
- 
-		        
-   System.out.print("Сгенерирован массив случайных чисел: "); 
-   for (int i = 0; i < n; i++) 
-		        {
-		        	System.out.print(array[i] + " ");
-		        }
-		        	System.out.println();
-		           	array = bublesort(array);
-		          
-		        
-		           	System.out.print("Массив отсортирован по возрастанию методом пузырька: ");         
-		           	for (int i = 0; i < n; i++) 
-		           		{
-		           			System.out.print(array[i] + " ");
-		           		}
-		           	System.out.println();
-		           
-		        in.close();
-    	
-    }
-    
-    private static int[] randomize(int size) 
-    {
-        int [] randomArray = new int[size];
 
-        Random randomushka = new Random();  
-        for (int i = 0; i < size; i++)
-        {
-        	randomArray[i] = randomushka.nextInt(100);
+public class SearchInArray {
+
+	public static void main(String[] args) {
+		
+    	Scanner in = new Scanner(System.in);              		
+        try {
+        	System.out.print("Please enter size of array: ");
+        	int arraySize = in.nextInt();
+        	SuperArray myArray = new SuperArray(arraySize);
+        	myArray.randomize();
+        	System.out.print("Randomized array: ");
+        	//myArray.print();
+        	/*
+        	myArray.bubbleSort();
+        	System.out.print("Sorted array: ");
+        	myArray.print();
+        	*/
+        	System.out.print("Please enter value to find: ");
+        	int number = in.nextInt();        	
         	
-        }
-        
-        return randomArray;
-            
-    }
-    
-    private static int[] bublesort(int[] arrayToSort) 
-    {  
-    	   	
-    	for (int i = 0; i < arrayToSort.length - 1; i++) 
-    	{
-    		for (int j = 0; j < arrayToSort.length - 1; j++) 
-    		{
-    			if (arrayToSort[j] > arrayToSort[j + 1])
-    			{
-    				int tmp = arrayToSort[j];
-    				arrayToSort[j] = arrayToSort[j + 1];
-    				arrayToSort[j + 1] = tmp;
-    			}
-    		}
-    	}
-    	
-    	return arrayToSort;    	
-    	
-    }  
- /*
-    private static int[] searchOne(int[] array) 
-    {    	   	
-    	 for (int j = 0; j < array.length; j++) 
-    	 {
-             if (array[j] == i) 
-             { 
-               return j;
-             }
-         }
-         return -1; 
-    }  
-*/ 
+        	long startTime = System.currentTimeMillis();
+        	System.out.println("One by one search result: " + myArray.search(number));
+        	long endTime = System.currentTimeMillis();
+        	long elapsedTime = endTime - startTime;
+        	System.out.println("One by one search time: " + elapsedTime);
+        	
+        	myArray.bubbleSort();
+        	
+        	startTime = System.currentTimeMillis();
+        	System.out.println("Binary search result: " + myArray.searchBin(number));
+        	endTime = System.currentTimeMillis();
+        	long elapsedTime2 = endTime - startTime;
+        	System.out.println("Binary search time: " + elapsedTime2);
+        	
+        	if (elapsedTime > elapsedTime2)
+        		System.out.println("One by one search took more time");
+        	else if (elapsedTime == elapsedTime2)
+        		System.out.println("Search time equal");
+        	else
+        		System.out.println("Binary search took more time");
+        	/*
+        	if (myArray.search(number)) {
+        		System.out.println("Number is found");
+        	} 
+        	else {
+        		System.out.println("Number is not found");
+        	}
+        	*/
+        	
+        }        	
+	    catch (InputMismatchException ex) {
+	    	System.err.println("Entered not an integer.");	    	
+	    	}
+        in.close();
+	}
 }
